@@ -4,29 +4,49 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StateCounter from './components/StateCounter';
 import ItemComponent from './components/ItemComponent';
-/* added code starts */
 import {useState} from 'react'
 import ThemeContext from './components/ThemeContext';
 import ThemeConsumer from './components/ThemeConsumer';
+/* added code starts */
+import { Container } from 'react-bootstrap';
+import CounterCallbackComponent from './components/CounterCallbackComponent';
 /* added code stops */
 
 function App() {
-  {/* added code starts */}
+
   const [theme, setTheme] = useState<string>('light');
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
+
+
+  {/* added code starts */}
+  const [count, setCount] = useState<number>(0);
+
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
+
+  const handleDecrement = () => {
+    setCount(count - 1);
+  };
   {/* added code stops  */}
 
   return (
-    <div>
+    <div className={theme}>
       <StateCounter />      
-      <ItemComponent />
-      {/* added code starts */}
+      <ItemComponent />      
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <ThemeConsumer />
       </ThemeContext.Provider>
+
+      {/* added code starts */}
+      <Container>
+        <h1>Counter callback</h1>
+        <p>Count: {count}</p>
+        <CounterCallbackComponent onIncrement={handleIncrement} onDecrement={handleDecrement} />
+      </Container>
       {/* added code stops  */}
     </div>  
   );
