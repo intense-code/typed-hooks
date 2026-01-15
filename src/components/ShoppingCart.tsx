@@ -1,12 +1,15 @@
 //ShoppingCart.tsx
 import type Item from "./Item";
-import React,{ useReducer } from "react";
+import React,{ useReducer, useRef } from "react";
 import ShoppingCartReducer from "./ShoppingCartReducer";
 
 const ShoppingCart: React.FC = ()=>{
 const [cart,dispatch] = useReducer(ShoppingCartReducer,[])
+const nextItemNumber = useRef(1)
+// const cartName:string = cart.length.toString();
 const handleAddItem = () =>{
-    const newItem:Item =  {id:Date.now(), name:`Item ${cart.length + 1}`}
+    const newItem:Item =  {id:Date.now(), name:`Item ${nextItemNumber.current}`}
+    nextItemNumber.current += 1
     dispatch({type:'ADD_ITEM',payload:newItem})
 }
 const handleRemoveItem = (itemId:number) =>{
