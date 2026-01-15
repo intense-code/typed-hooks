@@ -25,13 +25,22 @@ const handleRemoveItem = (itemId:number) =>{
 return (
       <div>
         <h2>Shopping Cart</h2>        
-        {cart.map(item => (
+        {[...cart]
+            .sort((a, b) => {
+                const aNumber = Number(a.name.replace("Item ",""))
+                const bNumber = Number(b.name.replace("Item ",""))
+                if (Number.isFinite(aNumber) && Number.isFinite(bNumber)) {
+                    return aNumber - bNumber
+                }
+                return a.name.localeCompare(b.name)
+            })
+            .map(item => (
         <div key={item.id}>
             {item.name}{' '}
-            <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+            <button className="shoppingbtn" onClick={() => handleRemoveItem(item.id)}>Remove</button>
         </div>
         ))}        
-        <button onClick={handleAddItem}>Add Item</button>
+        <button className="shoppingbtn" onClick={handleAddItem}>Add Item</button>
       </div>
     );
 
