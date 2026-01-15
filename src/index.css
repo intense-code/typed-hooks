@@ -18,6 +18,16 @@
 .dark{
   background-color: red;
 }
+.Excercise1{
+  color:red;
+  background-color: black;
+  padding-bottom:4px;
+
+}
+.Excercise1 button{
+  margin-left: 2px;
+  margin-right:2px;
+}
 a {
   font-weight: 500;
   color: #646cff;

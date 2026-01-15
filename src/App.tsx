@@ -11,7 +11,7 @@ import ThemeConsumer from './components/ThemeConsumer';
 import { Container } from 'react-bootstrap';
 import CounterCallbackComponent from './components/CounterCallbackComponent';
 /* added code stops */
-
+import CounterMultiply from './components/CounterMultiply';
 function App() {
 
   const [theme, setTheme] = useState<string>('light');
@@ -46,6 +46,7 @@ function App() {
         <h1>Counter callback</h1>
         <p>Count: {count}</p>
         <CounterCallbackComponent onIncrement={handleIncrement} onDecrement={handleDecrement} />
+        <CounterMultiply />
       </Container>
       {/* added code stops  */}
     </div>  
